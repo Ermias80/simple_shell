@@ -17,6 +17,5 @@
 char *read_line(void);
 void prompt(void);
 void PRINT(const char *message);
-int strlen(char *s);
-
+size_t strlen(const char *s);
 #endif
