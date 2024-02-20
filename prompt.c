@@ -24,13 +24,12 @@ void PRINT(const char *message)
  * @s: string input
  * Return: length of string
  */
-int strlen(char *s)
+size_t strlen(const char *s)
 {
-	int i;
-
-	for (i = 0; s[i] != '\0'; i++)
-	{
-		continue;
-	}
-	return (i);
+    size_t i = 0;
+    while (s[i] != '\0')
+    {
+        i++;
+    }
+    return (i);
 }
