@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 char *read_line(void);
 void prompt(void);
