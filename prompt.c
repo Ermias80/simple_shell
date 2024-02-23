@@ -1,22 +1,23 @@
 #include "shell.h"
+
 /**
  * prompt - function that prints '$' to standard output
- * Return:no return value
+ * Return: no return value
  */
 void prompt(void)
 {
-	PRINT("$ ");
+PRINT("$ ");
 }
 
 /**
  * PRINT - To print the output
  * @message: A pointer for the output message
- * Return: noting
+ * Return: nothing
  */
 void PRINT(const char *message)
 {
-    write(STDOUT_FILENO, message, strlen(message));
-	write(STDOUT_FILENO, "\n", 1);
+write(STDOUT_FILENO, message, strlen(message));
+write(STDOUT_FILENO, "\n", 1);
 }
 
 /**
@@ -26,10 +27,10 @@ void PRINT(const char *message)
  */
 size_t strlen(const char *s)
 {
-    size_t i = 0;
-    while (s[i] != '\0')
-    {
-        i++;
-    }
-    return (i);
+size_t i = 0; 
+while (s[i] != '\0')
+{
+	i++;
+}
+return (i);
 }
