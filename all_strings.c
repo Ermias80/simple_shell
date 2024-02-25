@@ -8,20 +8,18 @@
  */
 char *stringcpy(char *destination, char *source)
 {
-    int index = 0;
+	int index = 0;
 
-    if (destination == source || source == NULL)
-        return (destination);
-
-    do
-    {
-        destination[index] = source[index];
-        index++;
-    } while (source[index - 1] != '\0');
-
-    return (destination);
+	if (destination == source || source == NULL)
+	{
+		return (destination);
+	}
+	do {
+		destination[index] = source[index];
+		index++;
+	} while (source[index - 1] != '\0');
+	return (destination);
 }
-
 
 
 /**
@@ -32,33 +30,30 @@ char *stringcpy(char *destination, char *source)
  */
 char *string_dup(const char *original)
 {
-    int len = 0;
-    char *result;
+	int len = 0;
+	char *result;
 
-    if (original == NULL)
-        return (NULL);
+	if (original == NULL)
+		return (NULL);
+	const char *temp = original;
 
-    const char *temp = original;
-    while (*temp != '\0') {
-        len++;
-        temp++;
-    }
-
-    result = malloc(sizeof(char) * (len + 1));
-    if (result == NULL)
-        return (NULL);
-
-    int index = 0;
-    while (original[index] != '\0') {
-        result[index] = original[index];
-        index++;
-    }
-    result[index] = '\0';
-
-    return (result);
+	while (*temp != '\0)
+	{
+		len++;
+		temp++;
+	}
+	result = malloc(sizeof(char) * (len + 1));
+	if (result == NULL)
+		return (NULL);
+	int index = 0;
+	while (original[index] != '\0')
+	{
+		result[index] = original[index];
+		index++;
+	}
+	result[index] = '\0';
+	return (result);
 }
-
-
 /**
  * custom_puts - prints an input string
  * @input_string: the string to be printed
@@ -67,22 +62,19 @@ char *string_dup(const char *original)
  */
 void custom_puts(char *input_string)
 {
-    int index = 0;
+int index = 0;
 
-    if (input_string == NULL)
-        return;
-
-    while (*(input_string + index))
-    {
-        _putchar(*(input_string + index));
-        index++;
-    }
+if (input_string == NULL)
+	return;
+while (*(input_string + index))
+{
+_putcharacter(*(input_string + index));
+index++;
+}
 }
 
-
-
 /**
- * _putcharacter - Writes the specified character to standard output.
+ * _putcharacter - Writes the specified character to standard op.
  * @character: The character to be written.
  *
  * Return: On success, returns 1.
@@ -91,29 +83,27 @@ void custom_puts(char *input_string)
 
 int _putcharacter(char character)
 {
-    static int index;
-    static char buffer[WRITE_BUF_SIZE];
-
-    switch (character)
-    {
-        case BUF_FLUSH:
-            if (index >= WRITE_BUF_SIZE)
-            {
-                write(1, buffer, index);
-                index = 0;
-            }
-            break;
-        default:
-            if (index >= WRITE_BUF_SIZE)
-            {
-                write(1, buffer, index);
-                index = 0;
-            }
-            buffer[index++] = character;
-            break;
-    }
-
-    return (1);
+	static int index;
+	static char buffer[WRITE_BUF_SIZE];
+	switch (character)
+	{
+		case BUF_FLUSH:
+			if (index >= WRITE_BUF_SIZE)
+			{
+				write(1, buffer, index);
+				index = 0;
+			}
+			break;
+		default:
+			if (index >= WRITE_BUF_SIZE)
+			{
+				write(1, buffer, index);
+				index = 0;
+			}
+			buffer[index++] = character;
+			break;
+	}
+	return (1);
 }
 
 
