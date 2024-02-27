@@ -82,3 +82,24 @@ char *find_command_path(info_t *info, char *path_string, char *command)
 	} while (1);
 	return (NULL);
 }
+
+/**
+ * starts_with - checks if a string starts with a specified prefix
+ * @str: the string to check
+ * @prefix: the prefix to compare with the beginning of the string
+ *
+ * This function checks whether the given string @str starts with the specifie
+ * prefix @prefix. It returns true if @str starts with @prefix.
+ *
+ * Return: true if @str starts with @prefix, false otherwise
+ */
+bool starts_with(const char *str, const char *prefix)
+{
+	if (str == NULL || prefix == NULL)
+		return (false);
+	size_t str_len = strlen(str);
+	size_t prefix_len = strlen(prefix);
+	if (prefix_len > str_len)
+		return (false);
+return strncmp(str, prefix, prefix_len) == 0;
+}
