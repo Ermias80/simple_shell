@@ -15,8 +15,10 @@
 #define CMD_CHAIN	3
 
 /* for convert_number() */
-#define CONVERT_LOWERCASE	1
-#define CONVERT_UNSIGNED	2
+#define CONVERT_UNSIGNED 0x0001
+//#define CONVERT_UNSIGNED 1
+#define CONVERT_LOWERCASE 2
+
 /**Standard Library*/
 #include <stdio.h>
 #include <stdlib.h>

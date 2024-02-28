@@ -1,3 +1,4 @@
+#include "shell.h"
 /**
  * custom_puts - prints an input string
  * @input_string: the string to be printed

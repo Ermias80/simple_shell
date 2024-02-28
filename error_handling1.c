@@ -1,4 +1,5 @@
 #include "shell.h"
+#define CONVERT_UNSIGNED 0x0001
 /**
  * convert_number - converter function, a clone of itoa
  * @num: number

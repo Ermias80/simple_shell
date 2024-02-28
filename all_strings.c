@@ -1,4 +1,4 @@
-#include <shell.h>
+#include "shell.h"
 /**
  * stringcpy - Copies a string from source to destination.
  * @destination: Pointer to the destination string.
@@ -34,7 +34,7 @@ char *string_dup(const char *original)
 		return (NULL);
 	const char *temp = original;
 
-	while (*temp != '\0)
+	while (*temp != '\0')
 	{
 		len++;
 		temp++;

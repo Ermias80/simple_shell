@@ -109,6 +109,7 @@ list_t *nod_wz_starts(list_t *nd, char *prfx, char c)
 ssize_t getnd_indx(list_t *hd, list_t *nd)
 {
 	size_t idx = 0;
+	list_t *hd = list_p;
 
 	if (!hd)
 		return (-1);
