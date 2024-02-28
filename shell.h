@@ -3,6 +3,20 @@
 
 //#define PRINT(c) (write(STDERR_FILENO, c, _strlen(c)))
 
+/* for read/write buffers */
+#define READ_BUF_SIZE 1024
+#define WRITE_BUF_SIZE 1024
+#define BUF_FLUSH -1
+
+/* for command chaining */
+#define CMD_NORM	0
+#define CMD_OR		1
+#define CMD_AND		2
+#define CMD_CHAIN	3
+
+/* for convert_number() */
+#define CONVERT_LOWERCASE	1
+#define CONVERT_UNSIGNED	2
 /**Standard Library*/
 #include <stdio.h>
 #include <stdlib.h>
@@ -55,7 +69,16 @@ typedef struct list_t
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
-
+/**
+ *struct builtin - contains a builtin string and related function
+ *@type: the builtin command flag
+ *@func: the function
+ */
+typedef struct builtin
+{
+	char *type;
+	int (*func)(info_t *);
+} builtin_table;
 
 char *read_line(void);
 void prompt(void);
@@ -96,6 +119,29 @@ void *realloc_memo(void *ptr, unsigned int old_size, unsigned int new_size);
 void strings_free(char **str_arr);
 char *memo(char *ptr, char byte, unsigned int size);
 int bfree_loop(void **ptr);
+
+/**  List */
+size_t list_p(const list_t *head);
+char **list_to_strings(list_t *head);
+size_t list_length(const list_t *head);
+list_t *nod_wz_starts(list_t *nd, char *prfx, char c);
+ssize_t getnd_indx(list_t *hd, list_t *nd);
+list_t *AddNod(list_t **hd, const char *s, int num);
+list_t *Add_end_to_node(list_t **hd, const char *s, int num);
+size_t print_str_at_list(const list_t *node);
+void free_nodes(list_t **head_ptr);
+
+/** ERROR  */
+int err_str_toint(char *str);
+int errputchar(char c);
+int put_to_fd(char c, int fd);
+int puts_to_fd(char *str, int fd);
+void rm_commt(char *b);
+char *convert_number(long int num, int base, int flags);
+int print_decimal(int input, int fd);
+void errprt(char *s);
+void error_print(info_t *info, char *estr);
+
 
 
 #endif

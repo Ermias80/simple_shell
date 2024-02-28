@@ -134,4 +134,22 @@ int puts_to_fd(char *str, int fd)
 	return (char_count);
 }
 
+/**
+ * rm_commt - function replaces first instance of '#' with '\0'
+ * @b: address of the string to modify
+ *
+ * Return: Always 0;
+ */
+void rm_commt(char *b)
+{
+	int i = 0;
 
+	do {
+		if (b[i] == '#' && (i == 0 || b[i - 1] == ' '))
+		{
+			b[i] = '\0';
+			break;
+		}
+		i++;
+	} while (b[i] != '\0');
+}

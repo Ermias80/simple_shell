@@ -53,25 +53,70 @@ char **list_to_strings(list_t *head)
 	strs[i] = NULL;
 	return (strs);
 }
-
 /**
- * print_list - Prints all elements of a list_t linked list.
- * @h: Pointer to the first node.
+ * list_p - prints all elements of a list_t linked list
+ * @head: pointer to first node
  *
- * Return: Number of nodes in the list.
+ * Return: size of list
  */
-size_t print_list(const list_t *h)
+size_t list_p(const list_t *head)
 {
-	size_t count;
+	size_t i;
 
-	for (count = 0; h != NULL; h = h->next)
+	for (i = 0; head; i++)
 	{
-		custom_puts(convert_number(h->num, 10, 0));
+		custom_puts(convert_number(head->num, 10, 0));
 		_putcharacter(':');
 		_putcharacter(' ');
-		custom_puts(h->str ? h->str : "(nil)");
+		custom_puts(head->str ? head->str : "(nil)");
 		custom_puts("\n");
-		count++;
+		head = head->next;
 	}
-	return (count);
+	return (i);
+}
+
+/**
+ * nod_wz_starts - returns node whose string starts with prefix
+ * @nd: pointer to list head
+ * @prfx: string to match
+ * @c: the next character after prefix to match
+ *
+ * Return: match node or null
+ */
+list_t *nod_wz_starts(list_t *nd, char *prfx, char c)
+{
+	char *p = NULL;
+
+	if (!nd)
+		return (NULL);
+	do {
+		p = starts_with(nd->str, prfx);
+		if (p && ((c == -1) || (*p == c)))
+			return (nd);
+		nd = nd->next;
+	} while (nd);
+	return (NULL);
+}
+
+/**
+ * getnd_indx - Retrieves the index of a given node within a linked list.
+ *
+ * @hd: Pointer to the head of the linked list.
+ * @nd: Pointer to the node to search for.
+ *
+ * Return: Index of the node if found, otherwise -1.
+ */
+ssize_t getnd_indx(list_t *hd, list_t *nd)
+{
+	size_t idx = 0;
+
+	if (!hd)
+		return (-1);
+	do {
+		if (hd == nd)
+			return (idx);
+		hd = hd->next;
+		idx++;
+	} while (hd);
+	return (-1);
 }
