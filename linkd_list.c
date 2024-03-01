@@ -8,11 +8,14 @@
 size_t list_length(const list_t *head)
 {
 	size_t count = 0;
+	const list_t *current = head;
 
-	for (; head != NULL; head = head->next)
-	{
+	if (current == NULL)
+		return (count);
+	do {
 		count++;
-	}
+		current = (const list_t *)current->next;
+	} while (current != NULL);
 	return (count);
 }
 
@@ -25,9 +28,8 @@ size_t list_length(const list_t *head)
 char **list_to_strings(list_t *head)
 {
 	list_t *node = head;
-	size_t count = list_length(head), i, j;
+	size_t count = list_length(head), i;
 	char **strs;
-	char *str;
 
 	if (head == NULL || count == 0)
 		return (NULL);
@@ -37,22 +39,23 @@ char **list_to_strings(list_t *head)
 	i = 0;
 	while (node != NULL)
 	{
-		str = malloc(string_length(node->str) + 1);
-		if (str == NULL)
+		strs[i] = malloc(string_length(node->str) + 1);
+		if (strs[i] == NULL)
 		{
-			for (j = 0; j < i; j++)
+			for (size_t j = 0; j < i; j++)
 				free(strs[j]);
 			free(strs);
 			return (NULL);
 		}
-		str = stringcpy(str, node->str);
-		strs[i] = str;
+		stringcpy(strs[i], node->str);
 		i++;
-		node = node->next;
+		node = (list_t *)node->next;
 	}
 	strs[i] = NULL;
-	return (strs);
+	return strs;
 }
+
+
 /**
  * list_p - prints all elements of a list_t linked list
  * @head: pointer to first node
@@ -62,15 +65,16 @@ char **list_to_strings(list_t *head)
 size_t list_p(const list_t *head)
 {
 	size_t i;
+	const list_t *current = head;
 
-	for (i = 0; head; i++)
+	for (i = 0; current; i++)
 	{
-		custom_puts(convert_number(head->num, 10, 0));
+		custom_puts(convert_number(current->num, 10, 0));
 		_putcharacter(':');
 		_putcharacter(' ');
-		custom_puts(head->str ? head->str : "(nil)");
+		custom_puts(current->str ? current->str : "(nil)");
 		custom_puts("\n");
-		head = head->next;
+		current = (const list_t *)current->next;
 	}
 	return (i);
 }
@@ -90,17 +94,15 @@ list_t *nod_wz_starts(list_t *nd, char *prfx, char c)
 	if (!nd)
 		return (NULL);
 	do {
-		p = starts_with(nd->str, prfx);
+		p = string_starts_with(nd->str, prfx);
 		if (p && ((c == -1) || (*p == c)))
 			return (nd);
-		nd = nd->next;
+		nd = (list_t *)nd->next;
 	} while (nd);
 	return (NULL);
 }
-
 /**
  * getnd_indx - Retrieves the index of a given node within a linked list.
- *
  * @hd: Pointer to the head of the linked list.
  * @nd: Pointer to the node to search for.
  *
@@ -109,14 +111,13 @@ list_t *nod_wz_starts(list_t *nd, char *prfx, char c)
 ssize_t getnd_indx(list_t *hd, list_t *nd)
 {
 	size_t idx = 0;
-	list_t *hd = list_p;
 
 	if (!hd)
 		return (-1);
 	do {
 		if (hd == nd)
 			return (idx);
-		hd = hd->next;
+		hd = (list_t *)hd->next;
 		idx++;
 	} while (hd);
 	return (-1);

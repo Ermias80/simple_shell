@@ -1,8 +1,8 @@
 #include "shell.h"
 /**
  * AddNod - Adds a node to the beginning of the list.
- * @hd: Address of pointer to head node.
- * @s: String field of the node.
+ * @head: Address of pointer to head node.
+ * @str: String field of the node.
  * @num: Node index used by history.
  *
  * Return: Pointer to the newly added node, or NULL if memory allocation fails
@@ -46,7 +46,7 @@ list_t *Add_end_to_node(list_t **hd, const char *s, int num)
 	if (!hd)
 		return (NULL);
 	node = *hd;
-	new_node = memo(sizeof(list_t));
+	new_node = malloc(sizeof(list_t));
 	if (!new_node)
 		return (NULL);
 	memo((void *)new_node, 0, sizeof(list_t));
@@ -62,9 +62,9 @@ list_t *Add_end_to_node(list_t **hd, const char *s, int num)
 	}
 	if (node)
 	{
-		for (; node->next; node = node->next)
-			;
-		node->next = new_node;
+		while (node->next)
+			node = node->next;
+		node->next = (list_t *)new_node;
 	}
 	else
 	{
@@ -129,37 +129,35 @@ void free_nodes(list_t **head_ptr)
  */
 int delete_node(list_t **ptr, unsigned int index)
 {
-    list_t *node, *prev_node;
-    unsigned int i = 0;
+	list_t *node, *prev_node;
+	unsigned int i = 0;
 
-    if (!ptr || !*ptr)
-        return 0;
-
-    if (index == 0)
-    {
-        node = *ptr;
-        *ptr = (*ptr)->next;
-        free(node->str);
-        free(node);
-        return 1;
-    }
-
-    prev_node = NULL;
-    node = *ptr;
-    do {
-        if (i == index)
-        {
-            if (prev_node)
-                prev_node->next = node->next;
-            else
-                *ptr = node->next;
-            free(node->str);
-            free(node);
-            return 1;
-        }
-        prev_node = node;
-        node = node->next;
-        i++;
-    } while (node);
-    return 0;
+	if (!ptr || !*ptr)
+		return (0);
+	if (index == 0)
+	{
+		node = *ptr;
+		*ptr = (*ptr)->next;
+		free(node->str);
+		free(node);
+		return (1);
+	}
+	prev_node = NULL;
+	node = *ptr;
+	do {
+		if (i == index)
+		{
+			if (prev_node)
+				prev_node->next = node->next;
+			else
+				*ptr = node->next;
+			free(node->str);
+			free(node);
+			return (1);
+		}
+		prev_node = node;
+		node = node->next;
+		i++;
+	} while (node);
+	return (0);
 }
