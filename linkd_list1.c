@@ -7,14 +7,6 @@
  *
  * Return: Pointer to the newly added node, or NULL if memory allocation fails
  */
-/**
- * AddNod - Adds a node to the start of the list
- * @head: address of pointer to head node
- * @str: str field of node
- * @num: node index used by history
- *
- * Return: pointer to the newly added node, or NULL if memory allocation fails
- */
 list_t *AddNod(list_t **head, const char *str, int num)
 {
 	list_t *new_head;

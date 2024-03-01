@@ -1,7 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-//#define PRINT(c) (write(STDERR_FILENO, c, _strlen(c)))
 
 /* for read/write buffers */
 #define READ_BUF_SIZE 1024
@@ -16,7 +15,6 @@
 
 /* for convert_number() */
 #define CONVERT_UNSIGNED 0x0001
-//#define CONVERT_UNSIGNED 1
 #define CONVERT_LOWERCASE 2
 
 /**Standard Library*/
