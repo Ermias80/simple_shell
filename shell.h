@@ -130,7 +130,7 @@ list_t *AddNod(list_t **hd, const char *s, int num);
 list_t *Add_end_to_node(list_t **hd, const char *s, int num);
 size_t print_str_at_list(const list_t *node);
 void free_nodes(list_t **head_ptr);
-
+int delete_node(list_t **ptr, unsigned int index);
 /** ERROR  */
 int err_str_toint(char *str);
 int errputchar(char c);
@@ -142,6 +142,22 @@ int print_decimal(int input, int fd);
 void errprt(char *s);
 void error_print(info_t *info, char *estr);
 
+/**   main   */
+int main(int ac, char **av);
 
+
+/** history   */
+char *generate_history_file_path(info_t *info);
+int save_history_to_file(info_t *info);
+int add_history_entry(info_t *info, char *buffer, int line_count)
+int history_numbers(info_t *info);
+int read_history(info_t *info);
+
+
+/**    enviro  */
+int create_env_list(info_t *info);
+int set_enviro(info_t *data, char *property, char *value);
+char *get_env_value(info_t *data, const char *name);
+int env1(info_t *info);
 
 #endif

@@ -82,3 +82,20 @@ int set_enviro(info_t *data, char *property, char *value)
 	data->env_changed = 1;
 	return (0);
 }
+
+/**
+ * create_env_list - creates a linked list for environment variables
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ * Return: Always 0
+ */
+int create_env_list(info_t *info)
+{
+	list_t *node = NULL;
+
+	for (size_t i = 0; environ[i]; ++i) {
+		Add_end_to_node(&node, environ[i], 0);
+	}
+	info->env = node;
+	return (0);
+}

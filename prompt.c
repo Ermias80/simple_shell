@@ -6,7 +6,7 @@
  */
 void prompt(void)
 {
-PRINT("$ ");
+custom_puts("$ ");
 }
 
 /**
@@ -25,7 +25,7 @@ write(STDOUT_FILENO, "\n", 1);
  * @s: string input
  * Return: length of string
  */
-size_t strlen(const char *s)
+size_t string_length(const char *s)
 {
 size_t i = 0; 
 while (s[i] != '\0')
