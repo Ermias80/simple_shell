@@ -29,6 +29,18 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <stdbool.h>
+/**
+ * struct liststr - singly linked list
+ * @num: the number field
+ * @str: a string
+ * @next: points to the next node
+ */
+typedef struct list_t
+{
+        int num;
+        char *str;
+        struct liststr *next;
+} list_t;
 
 typedef struct passinfo {
     char *arg;
@@ -48,23 +60,11 @@ typedef struct passinfo {
 
     char **cmd_buf; /* Pointer to command buffer for chaining commands */
     int cmd_buf_type; /* Type of command buffer (e.g., ||, &&, ;) */
-    int readfd; // File descriptor for reading input
-    int histcount; // Count of history lines
+    int readfd;
+    int histcount;
 
 } info_t;
 
-/**
- * struct liststr - singly linked list
- * @num: the number field
- * @str: a string
- * @next: points to the next node
- */
-typedef struct list_t
-{
-	int num;
-	char *str;
-	struct liststr *next;
-} list_t;
 
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
