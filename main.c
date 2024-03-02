@@ -39,7 +39,7 @@ int main(int ac, char **av)
         }
         info->readfd = fd;
     }
-    populate_env_list(info);
+    create_env_list(info);
     read_history(info);
 
     while (r != -1 && builtin_ret != -2)
@@ -57,7 +57,7 @@ int main(int ac, char **av)
                 find_cmd(info);
         }
         else if (interactive(info))
-            _putchar('\n');
+            _putchaacter('\n');
         free_info(info, 0);
     }
     write_history(info);

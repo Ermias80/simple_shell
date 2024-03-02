@@ -160,4 +160,11 @@ int set_enviro(info_t *data, char *property, char *value);
 char *get_env_value(info_t *data, const char *name);
 int env1(info_t *info);
 
+void set_info(info_t *info, char **av);
+void free_info(info_t *info, int all);
+void find_cmd(info_t *info);
+int find_builtin(info_t *info);
+void fork_cmd(info_t *info);
+
+
 #endif
