@@ -165,6 +165,10 @@ void free_info(info_t *info, int all);
 void find_cmd(info_t *info);
 int find_builtin(info_t *info);
 void fork_cmd(info_t *info);
+int is_delim(char c, char *delim);
+int replace_string(char **old, char *new);
+int replace_vars(info_t *info);
+int replace_alias(info_t *info);
 
 
 #endif
