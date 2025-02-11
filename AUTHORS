@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Author1
+author1_name= "Ermias Mazengia"
+author1_email= "ermiasmaz8069@gmail.com"
+
+
+# Display author information
+echo "Authors:"
+echo "Author 1: $Ermias Mazengia, Email: $ermiasmaz8069@gmail.com"
