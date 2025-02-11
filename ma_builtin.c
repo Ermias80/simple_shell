@@ -1,14 +1,13 @@
 #include "shell.h"
-/**
- * ma_cd - change the current directory
- * @dir: directory cotaining the path to the destination working directory
- * Return: path to destination dir
- */
 
+/**
+ * ma_cd - Change the current directory
+ * @dir: Directory containing the path to the destination working directory
+ * Return: Path to destination directory
+ */
 void ma_cd(char *dir)
 {
-	char *cwd = NULL, *home = NULL, *prev_dir = NULL,
-		*old_dir = getcwd(NULL, 0);
+	char *cwd = NULL, *home = NULL, *prev_dir = NULL, *old_dir = getcwd(NULL, 0);
 
 	if (old_dir == NULL)
 		return;
@@ -42,14 +41,14 @@ void ma_cd(char *dir)
 		track_address(prev_dir);
 		if (chdir(prev_dir) != 0)
 		{
-			ma_perror_cd(dir,2);
+			ma_perror_cd(dir, 2);
 			free(prev_dir);
 			return;
 		}
-		chdir(prev_dir);
 		cwd = getcwd(NULL, 0);
 		if (cwd)
 			track_address(cwd);
+
 		write(1, cwd, ma_strlen(cwd));
 		write(1, "\n", 1);
 	}
@@ -67,12 +66,11 @@ void ma_cd(char *dir)
 	ma_setenv("OLDPWD", old_dir);
 }
 
-/*
- * exit_shell - Function that exit the shell with exit status
- * @argv: an array of arguments passed to the program
+/**
+ * exit_shell - Exit the shell with a given status
+ * @argv: Array of arguments passed to the program
  * Return: 2 on failure
  */
-
 int exit_shell(char **argv)
 {
 	int status;
