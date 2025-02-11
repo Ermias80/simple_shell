@@ -122,7 +122,7 @@ char *ma_cd_error(char *argus)
 	if (!ec)
 		return (NULL);
 	length = ma_strlen(shell) + ma_strlen(ec) +
-		+ ma_strlen(argus);
+		+ma_strlen(argus);
 	error = malloc(sizeof(char) * (length + 24));
 	if (!error)
 	{
