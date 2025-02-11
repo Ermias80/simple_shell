@@ -47,9 +47,9 @@ void ma_cd(char *dir)
 		}
 		cwd = getcwd(NULL, 0);
 		if (cwd)
-			track_address(cwd);
+		  track_address(cwd);
 
-		write(1, cwd, ma_strlen(cwd));
+	write(1, cwd, ma_strlen(cwd));
 		write(1, "\n", 1);
 	}
 	else
